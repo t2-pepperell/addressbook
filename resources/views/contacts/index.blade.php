@@ -6,9 +6,10 @@
  <div class="container pt-lg-5">
     <div class="jumbotron text-center"><h3>Address Book Application</h3>
         <p>Welcome to the Address book Application, the list of searchable contacts can be found below. To create a contact and edit you must be registered and logged in as a user.</p>
+        <a>Sign In<a/>
     </div>
-        
-    <div class=" row mb-2"> 
+
+    <div class=" row mb-2">
         <div class="col-6">
             {!! Form::open(['action' => 'SearchController@search', 'method' => 'GET']) !!}
             <form>
@@ -20,7 +21,7 @@
                 </div>
             </form>
             {!! Form::close() !!}
-        </div>    
+        </div>
     </div>
 
     <div class="row">
@@ -33,7 +34,7 @@
                     <th>Job Title</th>
                     <th>Email</th>
                     <th>Phone Number</th>
-                    <th>Mobile Number</th>        
+                    <th>Mobile Number</th>
                     <th>Address</th>
                     <th>Notes</th>
                     <th></th>
@@ -44,7 +45,7 @@
             <tbody>
             @if(count($contacts)> 0)
                 @foreach($contacts as $contact)
-                    <tr> 
+                    <tr>
                         <td>{{$contact->title}}</td>
                         <td>{{$contact->name}}</td>
                         <td>{{$contact->company_name}}</td>
@@ -60,11 +61,11 @@
                                     <a class="btn btn-link" href="contacts/{{$contact->id}}">View</a>
                                 @endif
                             @endif
-                        </td> 
+                        </td>
                         <td>
                             @if(!Auth::guest())
                                 @if(Auth::user()->id == $contact->user_id)
-                                    <a  class="btn btn-link" href="contacts/{{$contact->id}}/edit">Edit</a> 
+                                    <a  class="btn btn-link" href="contacts/{{$contact->id}}/edit">Edit</a>
                                 @endif
                             @endif
                         </td>
@@ -80,7 +81,7 @@
                         </td>
                     </tr>
                 @endforeach
-            
+
             @else
             <tr> <td><p>No post found</p></td></tr>
             @endif
@@ -91,11 +92,11 @@
         <div class="col-4">
             @if(!Auth::guest())
                 <a class="btn btn-primary" href="contacts/create">Create Contact</a>
-            @endif                      
+            @endif
         </div>
         <div class="col-2 ml-auto">{{ $contacts->links() }}</div>
     </div>
 
 </div>
-      
+
 @endsection
